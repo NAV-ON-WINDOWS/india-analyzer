@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import zipfile
+import streamlit as st
+
 
 # creating dataset and setting it to display max columns
 with zipfile.ZipFile("dataset.zip", "r") as z:
@@ -95,5 +97,8 @@ ax2.annotate(f"Peak = {peak_fact2_value}",
              arrowprops=dict(arrowstyle="->", color='red'))
 
 ax.set_ylim(bottom=0)
+
+# saving figure
+plt.savefig("Figure", dip=300)
 
 plt.show()
