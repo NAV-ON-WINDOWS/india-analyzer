@@ -10,8 +10,13 @@ def get_user_input(callback):
 
     window = tk.Tk()
     window.title("india-unfiltered")
-    window.geometry("420x220")
-    window.resizable(False, False)
+
+    width = window.winfo_screenwidth()
+    height = window.winfo_screenheight()
+
+    window.geometry(f"{width}x{height}+0+0")
+    
+    window.resizable(True, True)
     window.configure(bg="#1e1e1e")
 
     # title label
