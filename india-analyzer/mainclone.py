@@ -7,6 +7,7 @@ with zipfile.ZipFile("dataset.zip", "r") as z:
     with z.open("india-news-headlines.csv") as f:
         df = pd.read_csv(f)
 
+# cleaning
 """
 cleaning done
 """
@@ -36,7 +37,6 @@ df_combined = pd.concat([fact1_df, fact2_df], ignore_index=True)
 
 # combined years
 years = fact1_by_year.index.union(fact2_by_year.index)
-
 
 # matplotlib plotting
 fig, ax = plt.subplots(figsize=(13.66, 7.68))
