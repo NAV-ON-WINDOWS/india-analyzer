@@ -96,3 +96,6 @@ fact2 = st.text_input("Enter the factor you want to compare with")
 # Sub-label for Fact 2
 st.markdown('<span class="sub-text">Example: Employment, Football, Inflation, Indian Rupee</span>', unsafe_allow_html=True)
 
+col1, col2, col3 = st.columns([2, 1, 2])
+with col2:
+    analyzer = st.button("Analyze")
