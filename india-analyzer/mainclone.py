@@ -6,62 +6,49 @@ import zipfile
 with zipfile.ZipFile("dataset.zip", "r") as z:
     with z.open("india-news-headlines.csv") as f:
         df = pd.read_csv(f)
-# pd.set_option('display.max_columns', None)  # Prints columns of dataset without truncating
-# print(df)
 
-# checking for null values
-n_null = df.isnull()
-# print(n_null.sum()) # there are no null values in the dataset
 """
-since there are no null values,
-we don't need to fill none values,
-or,
-replace the duplicates,
+cleaning done
 """
 
-# counting the occurrences of the word "education" across the dataset
-education_mask = df.headline_text.str.contains("education", case=True,
+# Taking user input
+fact1 = input("Enter your 'base topic' to analyze: ").strip().lower()
+fact2 = input("Enter your topic to 'analyze against': ").strip().lower()
+
+# counting the occurrences of the word fact1 across the dataset
+fact1_mask = df.headline_text.str.contains(fact1, case=True,
                                      na=None, regex=False)
-# print(f"{df[education_mask].shape[0]} headlines found!") # 9299 headlines
-# print(f"{df[education_mask].head(9299)}") # printing all the 9299 headlines found
+""" 9299 headlines found """
 
-# keeping track of years when "education" was mentioned
-"""
-using boolean indexing
-"""
-ed_mask = df['headline_text'].str.contains("education", case=False, na=False)
-ed_df = df[ed_mask]
-ed_df = ed_df.copy() # gives a new dataframe
-ed_df['year'] = ed_df.publish_date.astype(str).str[:4]
-ed_by_year = ed_df['year'].value_counts().sort_index()
-# print(ed_by_year)
-
-
-# counting the occurrences of the word "employment" across the dataset
-employment_mask = df.headline_text.str.contains("employment", case=True,
+# counting the occurrences of the word fact2 across the dataset
+fact2_mask = df.headline_text.str.contains(fact2, case=True,
                                            na=None, regex=False)
-# print(f"{df[employment_mask].shape[0]} headlines found!") # 1008 headlines found
-# print(f"{df[employment_mask].head()}") # printing all the 1008 headlines found
+""" 1008 headlines found """
 
-# keeping track of years when "employment" was mentioned
+
+# keeping track of years when fact1 was mentioned
+""" using boolean indexing """
+fact1_mask = df['headline_text'].str.contains(fact1, case=False, na=False)
+fact1_df = df[fact1_mask]
+fact1_df = fact1_df.copy() # gives a new dataframe
+fact1_df['year'] = fact1_df.publish_date.astype(str).str[:4]
+fact1_by_year = fact1_df['year'].value_counts().sort_index()
+
+# keeping track of years when fact2 was mentioned
 """
 using boolean indexing
 """
-emp_mask = df['headline_text'].str.contains('employment', case=False, na=False)
-emp_df = df[emp_mask]
-emp_df = emp_df.copy() # gives a new dataframe
-emp_df['year'] = emp_df['publish_date'].astype(str).str[:4]
-emp_df_year = emp_df['year'].value_counts().sort_index()
-# print(emp_df_year)
-
+fact2_mask = df['headline_text'].str.contains(fact2, case=False, na=False)
+fact2_df = df[fact2_mask]
+fact2_df = fact2_df.copy() # gives a new dataframe
+fact2_df['year'] = fact2_df['publish_date'].astype(str).str[:4]
+fact2_by_year = fact2_df['year'].value_counts().sort_index()
 
 # combine both the dataframes
-df_combined = pd.concat([ed_df, emp_df], ignore_index=True)
-# print(df_combined)
-
+df_combined = pd.concat([fact1_df, fact2_df], ignore_index=True)
 
 # combined years
-years = ed_by_year.index.union(emp_df_year.index)
+years = fact1_by_year.index.union(fact2_by_year.index)
 
 
 # matplotlib plotting
