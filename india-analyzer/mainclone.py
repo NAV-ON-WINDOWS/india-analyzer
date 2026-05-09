@@ -53,7 +53,7 @@ ax.plot(fact1_by_year.index, fact1_by_year.values,  # FIXED: was fact2_by_year.v
         label=fact1, marker='o', color='blue')
 ax.set_ylabel(fact1, color='blue')
 ax.tick_params(axis='y', labelcolor='blue')
-ax.yaxis.set_major_locator(plt.MultipleLocator(100))  # y grid lines every 100
+ax.yaxis.set_major_locator(plt.AutoLocator())         # y grid lines auto scaled
 ax.xaxis.set_major_locator(plt.MultipleLocator(1))    # x grid lines every year
 
 # adding secondary axis — fact2 on right axis
@@ -62,7 +62,7 @@ ax2.plot(fact2_by_year.index, fact2_by_year.values,
          label=fact2, marker='o', color='red')
 ax2.set_ylabel(fact2, color='red')
 ax2.tick_params(axis='y', labelcolor='red')
-ax2.yaxis.set_major_locator(plt.MultipleLocator(10))
+ax2.yaxis.set_major_locator(plt.AutoLocator())        # y grid lines auto scaled
 
 # legend
 lines1, labels1 = ax.get_legend_handles_labels()
