@@ -1,5 +1,5 @@
 import streamlit as st
-from mainclone import df, analyze
+from main import df, analyze
 
 st.set_page_config(
     page_title="India Beyond Headlines",
