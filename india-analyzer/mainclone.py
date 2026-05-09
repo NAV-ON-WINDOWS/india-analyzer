@@ -59,19 +59,19 @@ manager.full_screen_toggle() # manager sets res to fullscreen
 # adding title and subtitle
 ax.set_title("Headline frequency analysis across Indian news (2001–2023)",
              fontsize=9, color='black', pad=25)
-fig.suptitle("Education v/s Employment", fontsize=14, fontweight='bold')
+fig.suptitle(f"{fact1} v/s {fact2}", fontsize=14, fontweight='bold')
 
 # axis creation and labelling
-ax.plot(ed_by_year.index, ed_by_year.values,
-        label="Education", marker='o', color='blue')
-ax.set_ylabel("Education", color='blue')
+ax.plot(fact1_by_year.index, fact2_by_year.values,
+        label=fact1, marker='o', color='blue')
+ax.set_ylabel(fact1, color='blue')
 ax.tick_params(axis='y', labelcolor='blue')
 
 # adding secondary axis to plot employment
 ax2 = ax.twinx()
-ax2.plot(emp_df_year.index, emp_df_year.values,
-         label="Employment", marker='o', color='red')
-ax2.set_ylabel('Employment', color='red')
+ax2.plot(fact2_by_year.index, fact2_by_year.values,
+         label=fact2, marker='o', color='red')
+ax2.set_ylabel(fact2, color='red')
 ax2.tick_params(axis='y', labelcolor='red')
 ax2.yaxis.set_major_locator(plt.MultipleLocator(10))
 # ax.plot(emp_df_year.index, emp_df_year.values, label="Employment", marker='o') # Previous employment plotting
@@ -90,10 +90,10 @@ ax.xaxis.set_major_locator(plt.MultipleLocator(1)) # x grid lines year
 
 # adding peak annotations
 # education peak
-peak_ed_year = ed_by_year.idxmax()
-peak_ed_val = ed_by_year.max()
-ax.annotate(f"Peak = {peak_ed_val}",
-            xy=(peak_ed_year, peak_ed_val),
+peak_fact1_year = fact1_by_year.idxmax()
+peak_fact1_val = fact1_by_year.max()
+ax.annotate(f"Peak = {peak_fact1_val}",
+            xy=(peak_fact1_year, peak_fact1_val),
             xytext=(-100, 0),
             textcoords="offset points",
             ha='center',
@@ -101,10 +101,10 @@ ax.annotate(f"Peak = {peak_ed_val}",
             arrowprops=dict(arrowstyle="->", color='blue'))
 
 # employment peak
-peak_emp_year = emp_df_year.idxmax()
-peak_emp_value = emp_df_year.max()
-ax2.annotate(f"Peak = {peak_emp_value}",
-             xy=(peak_emp_year, peak_emp_value),
+peak_fact2_year = fact2_by_year.idxmax()
+peak_fact2_value = fact2_by_year.max()
+ax2.annotate(f"Peak = {peak_fact2_value}",
+             xy=(peak_fact2_year, peak_fact2_value),
              xytext=(150, 0),
              textcoords="offset points",
              ha='center',
