@@ -13,10 +13,6 @@ cleaning done
 """
 
 def analyze(fact1, fact2):
-    # Taking user input
-    fact1 = input("Enter your 'base topic' to analyze: ").strip().lower()
-    fact2 = input("Enter your topic to 'analyze against': ").strip().lower()
-
     # keeping track of years when fact1 was mentioned
     """ using boolean indexing """
     fact1_mask = df['headline_text'].str.contains(fact1, case=False, na=False)
@@ -98,4 +94,4 @@ def analyze(fact1, fact2):
     # saving figure
     plt.savefig("Figure", dpi=300)
 
-    return fig
+    return fig, peak_fact1_val, peak_fact1_year, peak_fact2_value, peak_fact2_year
