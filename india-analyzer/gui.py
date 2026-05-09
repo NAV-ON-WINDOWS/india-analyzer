@@ -128,5 +128,5 @@ col2.metric("Years Covered", "2001 – 2023")
 col3.metric("Unique Categories", "1,024")
 
 st.markdown("---")
-st.markdown("<center>Built by Arnav &nbsp;|&nbsp; Data: Kaggle &nbsp;|&nbsp; https://github.com/NAV-ON-WINDOWS/india-analyzer</center>",
+st.markdown("<center>Built by Arnav Salgarkar &nbsp;|&nbsp; Data: Kaggle &nbsp;|&nbsp; https://github.com/NAV-ON-WINDOWS/india-analyzer</center>",
             unsafe_allow_html=True)
