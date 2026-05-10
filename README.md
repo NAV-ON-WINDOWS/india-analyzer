@@ -1,8 +1,9 @@
 # India Beyond Headlines
 
 > How topics trend across 22 years in the Indian news.
+> Built in a day — learning Streamlit from scratch, integrating a 3.8 million row dataset, and deploying it live. All in one sitting.
 
-A data analysis web app that lets you compare how often any two topics appeared in Indian news headlines between 2001 and 2023 — across 3.8 million real headlines.
+A data analysis web app that lets you compare how often any two topics appeared in Indian news headlines between 2001 and 2023, across 3.8 million real headlines.
 
 ---
 
@@ -14,18 +15,18 @@ A data analysis web app that lets you compare how often any two topics appeared 
 
 ## What It Does
 
-Type any two topics — `education` and `employment`, `cricket` and `football`, `gold` and `petrol` — and the app analyzes 3.8 million headlines to show you how their media coverage compares year by year, plotted as a dual-axis line graph.
+Type any two topics that you want to compare — `education` and `employment`, `cricket` and `football`, `economy` and `inflation` — and the app analyzes 3.8 million headlines to show you how their media coverage compares year by year, plotted as a dual-axis line graph while handelling any discrepancies in the input.
 
 ---
 
-## Findings
+## Findings / Interesting Comparisons to Try
 
-The default comparison — Education vs Employment — reveals something uncomfortable:
-
-- **Education** peaked at **1,086 headlines in 2012**, coinciding with national debate around the Right to Education Act.
-- **Employment** never crossed **112 headlines** in any single year across 22 years — despite unemployment being one of India's most pressing issues.
-- Both topics follow a near-identical trend throughout, until **2018**, where coverage of both drops sharply and never recovers to previous levels.
-
+| Topic 1 | Topic 2 | What you might find |
+|---------|---------|-------------------|
+| education | employment | A 10x gap that never closes |
+| cricket | football | How India's sporting identity shifted |
+| gold | petrol | Two commodities, one economic story |
+| modi | gandhi | The changing face of Indian politics |
 ---
 
 ## Dataset
@@ -72,15 +73,17 @@ streamlit run app.py
 | Pandas | Data loading, filtering, analysis |
 | Matplotlib | Dual axis visualization |
 | Streamlit | Web app interface |
+| Zipfile | Unzipping and reading dataset in local environment |
 
 ---
 
 ## What I Learned
 
-Built while learning Pandas and Matplotlib from scratch as a first year CS student.
+Built on my first Data Analysis project (https://github.com/NAV-ON-WINDOWS/india-unf) where you could only see for yourself how 'Education' and 'Employment' trends in the given time period, here you can actually compare any two factors you wish and that too with an interactive GUI!
+Being built in a only one day, I faced through multiple issues and a fast learning phase, but what I learnt was much more comforting than the stress of building it:
 
-- Reading and validating large CSV files with Pandas
-- Boolean masking and conditional filtering across 3.8M rows
+- Reading and validating large CSV files with zipfile
+- Boolean masking and conditional filtering across 3.8M rows using Pandas
 - String operations on dataframe columns
 - Value counts and year-wise aggregation
 - Dual-axis line plotting with peak annotations
