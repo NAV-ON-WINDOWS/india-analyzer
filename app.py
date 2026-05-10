@@ -112,13 +112,16 @@ if analyzer:
         st.warning("Please enter two different topics.")
     else:
         with st.spinner("Analyzing 3.8M headlines..."):
-            fig, peak_fact1_val, peak_fact1_year, peak_fact2_value, peak_fact2_year = analyze(
-                fact1.strip().lower(), fact2.strip().lower()
-            )
-            st.pyplot(fig)
-            st.caption(
-                f"📌 {fact1.title()} peaked at {peak_fact1_val} headlines in {peak_fact1_year}. "
-                f"{fact2.title()} peaked at {peak_fact2_value} headlines in {peak_fact2_year}.")
+            try:
+                fig, peak_fact1_val, peak_fact1_year, peak_fact2_value, peak_fact2_year = analyze(
+                    fact1.strip().lower(), fact2.strip().lower()
+                )
+                st.pyplot(fig)
+                st.caption(
+                    f"📌 {fact1.title()} peaked at {peak_fact1_val} headlines in {peak_fact1_year}. "
+                    f"{fact2.title()} peaked at {peak_fact2_value} headlines in {peak_fact2_year}.")
+            except ValueError as e:
+                st.error(str(e))
 
 st.divider()
 

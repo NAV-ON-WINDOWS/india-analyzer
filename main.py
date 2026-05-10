@@ -29,6 +29,12 @@ def analyze(fact1, fact2):
     fact2_df['year'] = fact2_df['publish_date'].astype(str).str[:4]
     fact2_by_year = fact2_df['year'].value_counts().sort_index()
 
+    # input error handling
+    if fact1_by_year.empty:
+        raise ValueError(f"No headlines found for '{fact1}'. Try a different topic.")
+    if fact2_by_year.empty:
+        raise ValueError(f"No headlines found for '{fact2}'. Try a different topic.")
+
     # combine both the dataframes
     df_combined = pd.concat([fact1_df, fact2_df], ignore_index=True)
 
@@ -44,7 +50,7 @@ def analyze(fact1, fact2):
     fig.suptitle(f"{fact1} v/s {fact2}", fontsize=14, fontweight='bold')
 
     # axis creation and labelling — fact1 on left axis
-    ax.plot(fact1_by_year.index, fact1_by_year.values,  # FIXED: was fact2_by_year.values
+    ax.plot(fact1_by_year.index, fact1_by_year.values,
             label=fact1, marker='o', color='blue')
     ax.set_ylabel(fact1, color='blue')
     ax.tick_params(axis='y', labelcolor='blue')
